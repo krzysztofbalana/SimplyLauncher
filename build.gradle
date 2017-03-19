@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'dependencies.gradle'
 
 buildscript {
     repositories {
@@ -15,6 +16,19 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+    }
+
+    ext {
+        applicationId = 'pl.mobly.simplylauncher'
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = 'pl.mobly.simplylauncher.test'
+    }
+
+    task runDomainUnitTests(dependsOn: [':domain:test']) {
+        description 'Run unit tests for the domain layer.'
     }
 }
 

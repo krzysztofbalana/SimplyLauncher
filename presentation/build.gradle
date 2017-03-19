@@ -1,25 +1,43 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    def rootConfiguration = rootProject.ext
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
     defaultConfig {
-        applicationId "pl.mobly.simplylauncher"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId rootConfiguration.applicationId
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode rootConfiguration.versionCode
+        versionName rootConfiguration.versionName
+        testInstrumentationRunner rootConfiguration.testInstrumentationRunner
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
+
 dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -28,9 +46,9 @@ dependencies {
     compile project(':data')
     compile project(':domain')
 
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile presentationDependencies.supportAppCompat
+    compile presentationDependencies.supportDesign
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
-    testCompile 'junit:junit:4.12'
+    compile presentationDependencies.constraintLayout
+    testCompile testDependencies.junit
 }
