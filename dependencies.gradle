@@ -6,8 +6,8 @@ ext {
 
     //Common
     supportVersion = "25.2.0"
-    daggerVersion = "2.7"
-    daggerCompilerVersion = "2.7"
+    daggerVersion = "2.9"
+    daggerCompilerVersion = "2.9"
     butterknifeVersion = "8.4.0"
     butterknifeCompilerVersion="8.4.0"
     timberVersion = "4.3.1"
@@ -37,6 +37,10 @@ ext {
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
             constraintLayout   : "com.android.support.constraint:${constraintLayoutVersion}",
             supportV4          : "com.android.support:support-v4:${supportVersion}"
+    ]
+
+    commonDependencies = [
+            javaAnnotations: "javax.annotation:jsr250-api:${javaAnnotationsVersion}"
     ]
 
     //temporary
