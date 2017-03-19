@@ -1,4 +1,8 @@
 package pl.mobly.domain;
 
-public class UseCase {
+
+import io.reactivex.Observable;
+
+public abstract class UseCase<T, P> {
+    public abstract Observable<T> buildUseCase(P params);
 }
