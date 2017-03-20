@@ -7,5 +7,5 @@ import io.reactivex.Observable;
 
 public interface SystemApi {
 
-    Observable<List> loadAppsList();
+    Observable<List<DomainApplicationInfo>> loadAppsList();
 }
