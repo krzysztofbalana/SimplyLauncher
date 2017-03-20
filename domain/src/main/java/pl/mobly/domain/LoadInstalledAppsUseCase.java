@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public class LoadInstalledAppsUseCase extends UseCase<List, Void> {
+public class LoadInstalledAppsUseCase extends UseCase<List<DomainApplicationInfo>, Void> {
     private SystemApi systemApi;
 
     public LoadInstalledAppsUseCase(SystemApi systemApi) {
@@ -14,7 +14,7 @@ public class LoadInstalledAppsUseCase extends UseCase<List, Void> {
     }
 
     @Override
-    public Observable<List> buildUseCase(Void params) {
+    public Observable<List<DomainApplicationInfo>> buildUseCase(Void params) {
         return systemApi.loadAppsList();
     }
 }
