@@ -2,6 +2,7 @@ package pl.mobly.simplylauncher.common.components.modules;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,8 +18,8 @@ public class DataModule {
     }
 
     @Provides
-    PackageManagerResource providePackageManagerResource(Context context) {
-        return new PackageManagerResource(context);
+    PackageManagerResource providePackageManagerResource(PackageManager packageManager) {
+        return new PackageManagerResource(packageManager);
     }
 
     @Provides

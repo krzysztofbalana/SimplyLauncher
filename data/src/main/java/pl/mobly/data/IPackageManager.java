@@ -7,4 +7,5 @@ import java.util.List;
 
 interface IPackageManager {
     List<ApplicationInfo> loadInstalledApps();
+    List<String> loadInstalledAppsLabels();
 }

@@ -11,6 +11,10 @@ import pl.mobly.domain.DomainApplicationInfo;
 public class AppInfoMapper {
 
     static List<DomainApplicationInfo> mapToDomain(List<ApplicationInfo> info) {
-        return new ArrayList<DomainApplicationInfo>();
+        List<DomainApplicationInfo> domainApplicationInfos = new ArrayList<>();
+        for (ApplicationInfo applicationInfo : info) {
+            domainApplicationInfos.add(new DomainApplicationInfo(applicationInfo.name));
+        }
+        return domainApplicationInfos;
     }
 }

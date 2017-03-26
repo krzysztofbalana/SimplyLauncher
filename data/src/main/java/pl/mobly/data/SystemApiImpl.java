@@ -22,13 +22,9 @@ public class SystemApiImpl implements SystemApi {
 
     @Override
     public Observable<List<DomainApplicationInfo>> loadAppsList() {
-        Observable.fromArray(
+        return Observable.fromArray(
                 AppInfoMapper
-                        .mapToDomain(packageManagerResource.loadInstalledApps()))
-                .doOnComplete(() -> {})
-                .doOnNext(domainApplicationInfos -> {
-                    Log.i(TAG, "loadAppsList: " + domainApplicationInfos.toString());
-                }).subscribe();
-        return null;
+                        .mapToDomain(packageManagerResource.loadInstalledApps()));
+
     }
 }
