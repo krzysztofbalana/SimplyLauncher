@@ -24,6 +24,8 @@ ext {
     roboElectricVersion = 3.0
     mockitoVersion = "2.6.8"
 
+    kotlinVersion = "1.0.7"
+
 
     presentationDependencies = [
             supportAppCompat   : "com.android.support:appcompat-v7:${supportVersion}",
@@ -36,11 +38,12 @@ ext {
             butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeCompilerVersion}",
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
             constraintLayout   : "com.android.support.constraint:${constraintLayoutVersion}",
-            supportV4          : "com.android.support:support-v4:${supportVersion}"
+            supportV4          : "com.android.support:support-v4:${supportVersion}",
     ]
 
     commonDependencies = [
-            javaAnnotations: "javax.annotation:jsr250-api:${javaAnnotationsVersion}"
+            javaAnnotations    : "javax.annotation:jsr250-api:${javaAnnotationsVersion}",
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}"
     ]
 
     //temporary
@@ -52,6 +55,8 @@ ext {
             supportAppCompat: "com.android.support:appcompat-v7:${supportVersion}",
             rxandroid       : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             rxjava          : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            dagger             : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerCompilerVersion}",
             timber          : "com.jakewharton.timber:timber:${timberVersion}"
     ]
 
