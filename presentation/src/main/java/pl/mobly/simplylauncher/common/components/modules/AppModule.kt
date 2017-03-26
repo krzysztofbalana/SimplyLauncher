@@ -17,7 +17,7 @@ import javax.inject.Singleton
 
     @Provides
     @Singleton
-    fun providePackageMangare(context: Context) : PackageManager {
+    fun providePackageManager(context: Context) : PackageManager {
         return context.packageManager
     }
 
