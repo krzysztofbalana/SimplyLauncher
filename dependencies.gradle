@@ -24,8 +24,6 @@ ext {
     roboElectricVersion = 3.0
     mockitoVersion = "2.6.8"
 
-    kotlinVersion = "1.0.7"
-
 
     presentationDependencies = [
             supportAppCompat   : "com.android.support:appcompat-v7:${supportVersion}",
@@ -43,7 +41,6 @@ ext {
 
     commonDependencies = [
             javaAnnotations    : "javax.annotation:jsr250-api:${javaAnnotationsVersion}",
-            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}"
     ]
 
     //temporary

@@ -1,5 +1,12 @@
 apply plugin: 'java'
+apply plugin: 'kotlin'
 
+<<<<<<< Updated upstream
+=======
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'
+
+>>>>>>> Stashed changes
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
     def testDependencies = rootProject.ext.testDependencies
@@ -14,5 +21,10 @@ configurations {
     provided
 }
 
+<<<<<<< Updated upstream
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+=======
+
+
+>>>>>>> Stashed changes
