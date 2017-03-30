@@ -1,18 +1,16 @@
 package pl.mobly.data
 
 
-import android.content.pm.ApplicationInfo
-
-import java.util.ArrayList
-
+import android.content.pm.PackageInfo
 import pl.mobly.domain.DomainApplicationInfo
+import java.util.*
 
 object AppInfoMapper {
 
-    internal fun mapToDomain(info: List<ApplicationInfo>): List<DomainApplicationInfo> {
+    internal fun mapToDomain(info: List<PackageInfo>): List<DomainApplicationInfo> {
         val domainApplicationInfos = ArrayList<DomainApplicationInfo>()
-        for (applicationInfo in info) {
-            domainApplicationInfos.add(DomainApplicationInfo(applicationInfo.name))
+        for (appInfo in info) {
+            domainApplicationInfos.add(DomainApplicationInfo(appInfo.applicationInfo.processName))
         }
         return domainApplicationInfos
     }
