@@ -13,6 +13,7 @@ ext {
     timberVersion = "4.3.1"
     constraintLayoutVersion = "constraint-layout:1.0.1"
     javaAnnotationsVersion = "1.0"
+    kotlinVersion = "1.1.1"
 
     //RxJava
     rxAndroidVersion = "2.0.1"
@@ -40,15 +41,10 @@ ext {
     ]
 
     commonDependencies = [
-            javaAnnotations    : "javax.annotation:jsr250-api:${javaAnnotationsVersion}",
-    ]
-
-    commonDependencies = [
             javaAnnotations: "javax.annotation:jsr250-api:${javaAnnotationsVersion}",
-
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
     ]
 
-    //temporary
     domainDependencies = [
             rxjava   : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
     ]
