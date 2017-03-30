@@ -1,17 +1,16 @@
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
-targetCompatibility = '1.7'
-sourceCompatibility = '1.7'
-
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
     def testDependencies = rootProject.ext.testDependencies
+    def commonDependencies = rootProject.ext.commonDependencies
 
     compile domainDependencies.rxjava
 
     testCompile testDependencies.junit
     testCompile testDependencies.mockito
+    compile commonDependencies.kotlin
 }
 
 configurations {
