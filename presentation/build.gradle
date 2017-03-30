@@ -35,6 +35,11 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/rxjava.properties'
     }
+
+    kapt {
+        generateStubs = true
+    }
+
 }
 
 dependencies {
