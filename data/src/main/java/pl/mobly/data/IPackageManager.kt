@@ -5,5 +5,5 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 
 internal interface IPackageManager {
-    fun loadInstalledApps(): List<PackageInfo>
+    fun loadInstalledApps(): MutableList<ApplicationInfo>
 }
