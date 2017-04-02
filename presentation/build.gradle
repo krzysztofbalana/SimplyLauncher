@@ -40,6 +40,12 @@ android {
         generateStubs = true
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
 }
 
 dependencies {
@@ -64,6 +70,7 @@ dependencies {
 
     compile presentationDependencies.constraintLayout
     testCompile testDependencies.junit
+    testCompile testDependencies.kjunit
     compile 'io.reactivex.rxjava2:rxkotlin:2.0.0'
 
 }

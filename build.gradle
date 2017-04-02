@@ -31,6 +31,5 @@ allprojects {
     task runDomainUnitTests(dependsOn: [':domain:test']) {
         description 'Run unit tests for the domain layer.'
     }
-
 }
 
