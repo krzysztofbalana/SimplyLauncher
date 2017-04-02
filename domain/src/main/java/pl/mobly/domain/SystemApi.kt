@@ -3,7 +3,7 @@ package pl.mobly.domain
 
 import io.reactivex.Observable
 
-abstract class SystemApi {
+interface SystemApi {
 
-    abstract fun loadAppsList(): Observable<List<DomainApplicationInfo>>
+    fun loadAppsList(): Observable<List<DomainApplicationInfo>>
 }
