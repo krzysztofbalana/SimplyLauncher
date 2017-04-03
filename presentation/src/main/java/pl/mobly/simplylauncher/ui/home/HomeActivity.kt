@@ -19,10 +19,13 @@ class HomeActivity : Activity(), HomeView {
         val log = Logger.getLogger(javaClass.simpleName)
     }
 
-    @Inject
-    lateinit var systemInfoInteractorImpl: SystemInfoInteractorImpl
-
+    @Inject lateinit var homePresenter:HomePresenterImpl
     lateinit var gestureDetector: GestureDetector
+
+    override fun onResume() {
+        super.onResume()
+	    homePresenter.bindView(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +55,11 @@ class HomeActivity : Activity(), HomeView {
 
     override fun onDestroy() {
         releaseInjectionSystem()
+	    homePresenter.unbindView()
         super.onDestroy()
     }
+
+
 
     private fun releaseInjectionSystem() {
         (applicationContext as AppBase).releaseHomeComponent()

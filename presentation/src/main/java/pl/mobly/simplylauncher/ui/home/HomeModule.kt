@@ -10,7 +10,7 @@ open class HomeModule(private val application: Application) {
 
     @Provides
     @HomeScope
-    fun provideHomePresenter(systemInfoInteractor: SystemInfoInteractorImpl):HomePresenter {
+    fun provideHomePresenter(systemInfoInteractor: SystemInfoInteractorImpl):HomePresenterImpl {
         return HomePresenterImpl(systemInfoInteractor)
     }
 }
