@@ -3,6 +3,7 @@ package pl.mobly.domain
 
 import io.reactivex.Observable
 
-interface UseCase<T, P> {
+interface ParamUseCase<T, P> {
     fun buildUseCase(params: P): Observable<T>
 }
+

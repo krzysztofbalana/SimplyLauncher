@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoadInstalledAppsUseCaseTest {
+public class LoadInstalledAppsParamUseCaseTest {
 
     LoadInstalledAppsUseCase systemUnderTest;
 
@@ -36,7 +36,7 @@ public class LoadInstalledAppsUseCaseTest {
         simulateApiResponded();
 
         TestObserver<List> testObserver = TestObserver.create();
-        systemUnderTest.buildUseCase(null).subscribe(testObserver);
+        systemUnderTest.buildUseCase().subscribe(testObserver);
         testObserver.assertComplete();
         testObserver.assertNoErrors();
     }

@@ -8,6 +8,6 @@ import pl.mobly.domain.LoadInstalledAppsUseCase
 class SystemInfoInteractorImpl(private val loadInstalledAppsUseCase: LoadInstalledAppsUseCase) : SystemInfoInteractor {
 
     override fun loadAppsList(): Observable<List<DomainApplicationInfo>> {
-        return loadInstalledAppsUseCase.buildUseCase(null!!)
+        return loadInstalledAppsUseCase.buildUseCase()
     }
 }
