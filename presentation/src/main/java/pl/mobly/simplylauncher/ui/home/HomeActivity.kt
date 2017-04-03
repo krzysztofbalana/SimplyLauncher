@@ -7,7 +7,6 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import kotlinx.android.synthetic.main.bottom_sheet.*
-import pl.mobly.domain.interactors.SystemInfoInteractorImpl
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
 import java.util.logging.Logger

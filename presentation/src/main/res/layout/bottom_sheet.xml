@@ -10,10 +10,11 @@
     app:layout_behavior="@string/bottom_sheet_behavior"
     android:background="@android:color/darker_gray">
 
-    <TextView
+    <pl.mobly.simplylauncher.ui.appDrawer.AppDrawerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LALALALALAL"/>
+        android:id="@+id/app_drawer_view"
+        />
 
 
 </LinearLayout>
