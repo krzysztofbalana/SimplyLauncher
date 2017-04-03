@@ -10,11 +10,7 @@ class PackageManagerResource(private val packageManager: PackageManager) : IPack
 		val installedAllApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
 		val installedNonSystemApps: MutableList<ApplicationInfo> = mutableListOf()
 		if (installedAllApps.size != 0) {
-			for (unit in installedAllApps) {
-				if (packageManager.getLaunchIntentForPackage(unit.packageName) != null) {
-					installedNonSystemApps.add(unit)
-				}
-			}
+			installedAllApps.filterTo(installedNonSystemApps) { packageManager.getLaunchIntentForPackage(it.packageName) != null }
 		}
 		return installedNonSystemApps
 	}

@@ -16,14 +16,11 @@ class PackageManagerResourceTest {
 
 	lateinit var packageManager: PackageManager
 
-	lateinit var mockedListOfApps: MutableList<ApplicationInfo>
-
 	lateinit var mockedListOdAppsInfo: MutableList<ApplicationInfo>
 
 	@Before
 	fun setUp() {
 		packageManager = mock()
-		mockedListOfApps = mock()
 		systemUnderTest = PackageManagerResource(packageManager)
 
 		mockedListOdAppsInfo = initList()
