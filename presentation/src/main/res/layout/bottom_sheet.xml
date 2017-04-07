@@ -10,7 +10,7 @@
     app:layout_behavior="@string/bottom_sheet_behavior"
     android:background="@android:color/darker_gray">
 
-    <pl.mobly.simplylauncher.ui.appDrawer.AppDrawerView
+    <pl.mobly.simplylauncher.ui.appDrawer.AppDrawerViewImpl
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/app_drawer_view"
