@@ -59,7 +59,6 @@ class HomeActivity : Activity(), HomeView {
     }
 
 
-
     private fun releaseInjectionSystem() {
         (applicationContext as AppBase).releaseHomeComponent()
     }

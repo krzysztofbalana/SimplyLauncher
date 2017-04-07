@@ -1,7 +1,7 @@
 package pl.mobly.simplylauncher.ui.base
 
 
-interface BasePresenter {
-    fun bindView()
-    fun unbindView()
+interface BasePresenter<V> {
+    fun bind(view: V)
+    fun unbind()
 }
