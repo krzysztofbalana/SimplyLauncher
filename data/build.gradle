@@ -44,7 +44,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile dataDependencies.dagger
-    kapt dataDependencies.daggerCompiler
+    kapt dataDependencies.rxjava
+    compile dataDependencies.rxandroid
     compile commonDependencies.kotlin
     provided commonDependencies.javaAnnotations
 
