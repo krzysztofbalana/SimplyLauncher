@@ -6,7 +6,7 @@ import android.support.design.widget.BottomSheetBehavior
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
-import kotlinx.android.synthetic.main.bottom_sheet.*
+import android.widget.LinearLayout
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
 import java.util.logging.Logger
@@ -20,6 +20,8 @@ class HomeActivity : Activity(), HomeView {
 
     @Inject lateinit var homePresenter:HomePresenterImpl
     lateinit var gestureDetector: GestureDetector
+    lateinit var bottomSheetLayout:LinearLayout
+
 
     override fun onResume() {
         super.onResume()
@@ -31,6 +33,8 @@ class HomeActivity : Activity(), HomeView {
         setContentView(R.layout.activity_home)
         initInjectionSystem()
 
+        bottomSheetLayout = findViewById(R.id.bottom_sheet) as LinearLayout
+
         gestureDetector = GestureDetector(this, object : SimpleOnGestureListener() {
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                 return super.onSingleTapConfirmed(e)
@@ -40,7 +44,7 @@ class HomeActivity : Activity(), HomeView {
                 var minimalDistanceLength = 100
                 if (distanceY >= minimalDistanceLength) {
                     log.info("MOVING UP")
-                    val from = BottomSheetBehavior.from(bottom_sheet)
+                    val from = BottomSheetBehavior.from(bottomSheetLayout)
                     from.setState(BottomSheetBehavior.STATE_EXPANDED)
                 }
                 return super.onScroll(e1, e2, distanceX, distanceY)

@@ -2,10 +2,10 @@ package pl.mobly.simplylauncher.ui.appDrawer
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.view_appdrawer.view.*
 import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
@@ -15,10 +15,11 @@ import javax.inject.Inject
 class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 
 	lateinit private var mContext: Context
-	lateinit private var recyclerView: RecyclerView
-	@Inject lateinit var presenter:AppDrawerPresenterImpl
+	@Inject lateinit var presenter: AppDrawerPresenterImpl
 
-	constructor(context: Context) : super(context)
+	constructor(context: Context):super(context) {
+		init()
+	}
 
 	constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
 		this.mContext = context
@@ -26,24 +27,21 @@ class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 	}
 
 	private fun init() {
-		LayoutInflater.from(mContext).inflate(R.layout.kotlin_appdrawer, this, true)
-
-		recyclerView = RecyclerView(mContext)
-		recyclerView.layoutManager = LinearLayoutManager(mContext)
-
 		(mContext.applicationContext as AppBase).createHomeComponent().inject(this)
-
 		presenter.bind(this)
 
+		val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
+
+		installedAppsList.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 	}
 
 	override fun onAttachedToWindow() {
 		super.onAttachedToWindow()
 	}
 
-	override fun displayInstalledAppsList(list:List<DomainApplicationInfo>) {
-		recyclerView.adapter = AppsListAdapter(mContext, list)
-		recyclerView.adapter.notifyDataSetChanged()
+	override fun displayInstalledAppsList(list: List<DomainApplicationInfo>) {
+		installedAppsList.adapter = AppsListAdapter(mContext, list)
 	}
 
 	override fun onIconClick() {

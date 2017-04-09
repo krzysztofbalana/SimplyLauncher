@@ -1,5 +1,6 @@
 package pl.mobly.simplylauncher.ui.appDrawer
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import pl.mobly.domain.interactors.SystemInfoInteractorImpl
 import java.lang.ref.WeakReference
@@ -15,7 +16,7 @@ class AppDrawerPresenterImpl(private val systemInfoInteractor: SystemInfoInterac
 	}
 
 	private fun getInstalledApps() {
-		disposable = systemInfoInteractor.loadAppsList().subscribe(
+		disposable = systemInfoInteractor.loadAppsList().observeOn(AndroidSchedulers.mainThread()).subscribe(
 				{appsList ->
 					viewCaptor.get()?.displayInstalledAppsList(appsList)
 				},
