@@ -1,18 +1,17 @@
-package pl.mobly.simplylauncher.ui.appDrawer
+package pl.mobly.simplylauncher.ui.appDrawer.list
 
 import pl.mobly.domain.DomainApplicationInfo
 
 
-interface AppDrawerContract {
+interface AppsListContract {
 
 	interface View {
 		fun displayInstalledAppsList(list: List<DomainApplicationInfo>)
 		fun onIconClick()
 	}
 
-	interface Presenter<V: android.view.View> {
-		fun bind(view:V)
-		fun unbind()
+	interface Presenter {
+
 	}
 
 }

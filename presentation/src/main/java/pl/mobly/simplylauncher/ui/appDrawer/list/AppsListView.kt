@@ -1,4 +1,4 @@
-package pl.mobly.simplylauncher.ui.appDrawer
+package pl.mobly.simplylauncher.ui.appDrawer.list
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -12,10 +12,10 @@ import pl.mobly.simplylauncher.common.AppBase
 import javax.inject.Inject
 
 
-class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
+class AppsListView : LinearLayout, AppsListContract.View {
 
 	lateinit private var mContext: Context
-	@Inject lateinit var presenter: AppDrawerPresenterImpl
+	@Inject lateinit var presenterList: AppsListPresenterImpl
 
 	constructor(context: Context):super(context) {
 		init()
@@ -28,12 +28,12 @@ class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 
 	private fun init() {
 		(mContext.applicationContext as AppBase).createHomeComponent().inject(this)
-		presenter.bind(this)
+		presenterList.bind(this)
 
 		val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
 
-		installedAppsList.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+		installedAppsList.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 	}
 
 	override fun onAttachedToWindow() {
@@ -53,7 +53,7 @@ class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 	}
 
 	public fun dispose() {
-		presenter.unbind()
+		presenterList.unbind()
 		(mContext.applicationContext as AppBase).releaseHomeComponent()
 	}
 }

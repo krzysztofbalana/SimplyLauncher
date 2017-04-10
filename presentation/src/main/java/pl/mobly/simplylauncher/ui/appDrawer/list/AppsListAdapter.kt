@@ -1,4 +1,4 @@
-package pl.mobly.simplylauncher.ui.appDrawer
+package pl.mobly.simplylauncher.ui.appDrawer.list
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,7 +8,7 @@ import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 
 
-class AppsListAdapter : RecyclerView.Adapter<AppListViewHolder> {
+class AppsListAdapter : RecyclerView.Adapter<AppsListViewHolder> {
 
 	private val context: Context
 	private val installedApps: List<DomainApplicationInfo>
@@ -18,7 +18,7 @@ class AppsListAdapter : RecyclerView.Adapter<AppListViewHolder> {
 		this.installedApps = installedApps.toMutableList()
 	}
 
-	override fun onBindViewHolder(holder: AppListViewHolder?, position: Int) {
+	override fun onBindViewHolder(holder: AppsListViewHolder?, position: Int) {
 		holder?.bind(installedApps.get(position))
 	}
 
@@ -26,8 +26,8 @@ class AppsListAdapter : RecyclerView.Adapter<AppListViewHolder> {
 		return installedApps.size
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AppListViewHolder {
-		val view = LayoutInflater.from(context).inflate(R.layout.list_installed_apps, parent, false)
-		return AppListViewHolder(view)
+	override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AppsListViewHolder {
+		val view = LayoutInflater.from(context).inflate(R.layout.item_installed_app, parent, false)
+		return AppsListViewHolder(view)
 	}
 }
