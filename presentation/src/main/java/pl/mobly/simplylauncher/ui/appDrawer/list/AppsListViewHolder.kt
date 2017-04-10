@@ -1,4 +1,4 @@
-package pl.mobly.simplylauncher.ui.appDrawer
+package pl.mobly.simplylauncher.ui.appDrawer.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,10 +7,10 @@ import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 
 
-class AppListViewHolder: RecyclerView.ViewHolder {
-	private var text:TextView
+class AppsListViewHolder : RecyclerView.ViewHolder {
+	private var text: TextView
 
-	constructor(view:View) : super(view) {
+	constructor(view: View) : super(view) {
 		text = view.findViewById(R.id.installed_app_position) as TextView
 	}
 
