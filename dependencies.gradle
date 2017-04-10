@@ -1,0 +1,68 @@
+ext {
+    androidBuildToolsVersion = "25.0.2"
+    androidMinSdkVersion = 16
+    androidTargetSdkVersion = 25
+    androidCompileSdkVersion = 25
+
+    //Common
+    supportVersion = "25.2.0"
+    daggerVersion = "2.9"
+    daggerCompilerVersion = "2.9"
+    butterknifeVersion = "8.4.0"
+    butterknifeCompilerVersion = "8.4.0"
+    timberVersion = "4.3.1"
+    constraintLayoutVersion = "constraint-layout:1.0.1"
+    javaAnnotationsVersion = "1.0"
+    kotlinVersion = "1.1.1"
+
+    //RxJava
+    rxAndroidVersion = "2.0.1"
+    rxJavaVersion = "2.0.4"
+    rxBindingVersion = "1.0.0"
+
+    //Testing
+    junitVersion = 4.12
+    roboElectricVersion = 3.0
+    mockitoVersion = "2.6.8"
+
+
+    presentationDependencies = [
+            supportAppCompat   : "com.android.support:appcompat-v7:${supportVersion}",
+            supportDesign      : "com.android.support:design:${supportVersion}",
+            rxandroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxjava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            dagger             : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerCompilerVersion}",
+            butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeCompilerVersion}",
+            timber             : "com.jakewharton.timber:timber:${timberVersion}",
+            constraintLayout   : "com.android.support.constraint:${constraintLayoutVersion}",
+            supportV4          : "com.android.support:support-v4:${supportVersion}",
+    ]
+
+    commonDependencies = [
+            javaAnnotations: "javax.annotation:jsr250-api:${javaAnnotationsVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+    ]
+
+    domainDependencies = [
+            rxjava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    dataDependencies = [
+            supportAppCompat: "com.android.support:appcompat-v7:${supportVersion}",
+            rxandroid       : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxjava          : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            dagger          : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler  : "com.google.dagger:dagger-compiler:${daggerCompilerVersion}",
+            timber          : "com.jakewharton.timber:timber:${timberVersion}"
+    ]
+
+    testDependencies = [
+            junit       : "junit:junit:${junitVersion}",
+            kjunit      : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            roboelectric: "org.robolectric:robolectric:${roboElectricVersion}",
+            mockito     : "org.mockito:mockito-core:${mockitoVersion}"
+    ]
+
+}

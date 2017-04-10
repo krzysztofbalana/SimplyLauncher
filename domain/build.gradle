@@ -1,8 +1,31 @@
 apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+configurations {
+    provided
+}
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    def testDependencies = rootProject.ext.testDependencies
+    def commonDependencies = rootProject.ext.commonDependencies
+
+    compile domainDependencies.rxjava
+    compile commonDependencies.kotlin
+
+    testCompile 'junit:junit:4.12'
+    testCompile commonDependencies.kotlin
+    testCompile testDependencies.kjunit
+    testCompile 'com.nhaarman:mockito-kotlin:1.1.0'
+}
+
