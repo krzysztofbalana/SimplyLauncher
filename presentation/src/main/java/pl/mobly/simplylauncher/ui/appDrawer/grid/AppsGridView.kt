@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.view_grid_list.view.*
 import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
@@ -39,6 +40,7 @@ class AppsGridView : LinearLayout, AppsGridContract.View {
 	}
 
 	override fun displayAppsGrid(list: List<DomainApplicationInfo>) {
+		grid.adapter = IconsAdapter(context, list)
 	}
 
 	override fun onIconClick() {

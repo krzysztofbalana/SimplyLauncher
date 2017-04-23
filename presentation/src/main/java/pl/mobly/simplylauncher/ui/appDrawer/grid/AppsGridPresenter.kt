@@ -2,7 +2,6 @@ package pl.mobly.simplylauncher.ui.appDrawer.grid
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.domain.interactors.SystemInfoInteractorImpl
 import pl.mobly.simplylauncher.ui.base.BasePresenter
 
@@ -15,9 +14,12 @@ class AppsGridPresenter(val systemInfoInteractor: SystemInfoInteractorImpl) : Ba
 		getInstalledApps()
 	}
 
-	private fun getInstalledApps() {
+	override fun getInstalledApps() {
 		disposable = systemInfoInteractor.loadAppsList()
 				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe({ arrayListOf<DomainApplicationInfo>()})
+				.subscribe(
+						{ list ->
+							view.get()?.displayAppsGrid(list) },
+						Throwable::printStackTrace)
 	}
 }
