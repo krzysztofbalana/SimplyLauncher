@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class AppsListView : LinearLayout, AppsListContract.View {
 
-	lateinit private var mContext: Context
 	@Inject lateinit var presenterList: AppsListPresenterImpl
 
 	constructor(context: Context):super(context) {
@@ -22,15 +21,14 @@ class AppsListView : LinearLayout, AppsListContract.View {
 	}
 
 	constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-		this.mContext = context
 		init()
 	}
 
 	private fun init() {
-		(mContext.applicationContext as AppBase).createHomeComponent().inject(this)
+		(context.applicationContext as AppBase).createHomeComponent().inject(this)
 		presenterList.bind(this)
 
-		val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+		val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
 
 		installedAppsList.layoutManager = LinearLayoutManager(context, VERTICAL, false)
@@ -41,7 +39,7 @@ class AppsListView : LinearLayout, AppsListContract.View {
 	}
 
 	override fun displayInstalledAppsList(list: List<DomainApplicationInfo>) {
-		installedAppsList.adapter = AppsListAdapter(mContext, list)
+		installedAppsList.adapter = AppsListAdapter(context, list)
 	}
 
 	override fun onIconClick() {
@@ -54,7 +52,7 @@ class AppsListView : LinearLayout, AppsListContract.View {
 
 	public fun dispose() {
 		presenterList.unbind()
-		(mContext.applicationContext as AppBase).releaseHomeComponent()
+		(context.applicationContext as AppBase).releaseHomeComponent()
 	}
 }
 
