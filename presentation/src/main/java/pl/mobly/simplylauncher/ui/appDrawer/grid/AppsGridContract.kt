@@ -11,5 +11,6 @@ interface AppsGridContract {
 	}
 
 	interface Presenter {
+		fun getInstalledApps()
 	}
 }
