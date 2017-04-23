@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class AppsListView : LinearLayout, AppsListContract.View {
 
-	@Inject lateinit var presenterList: AppsListPresenterImpl
+	@Inject lateinit var presenter: AppsListPresenterImpl
 
 	constructor(context: Context):super(context) {
 		init()
@@ -26,7 +26,7 @@ class AppsListView : LinearLayout, AppsListContract.View {
 
 	private fun init() {
 		(context.applicationContext as AppBase).createHomeComponent().inject(this)
-		presenterList.bind(this)
+		presenter.bind(this)
 
 		val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
@@ -50,8 +50,8 @@ class AppsListView : LinearLayout, AppsListContract.View {
 		dispose()
 	}
 
-	public fun dispose() {
-		presenterList.unbind()
+	fun dispose() {
+		presenter.unbind()
 		(context.applicationContext as AppBase).releaseHomeComponent()
 	}
 }

@@ -19,15 +19,8 @@ class AppsListPresenterImpl(private val systemInfoInteractor: SystemInfoInteract
 				{appsList ->
 					view.get()?.displayInstalledAppsList(appsList)
 				},
-				{ error->
-
-				}
+				Throwable::printStackTrace
 		)
 	}
-
-	override fun unbind() {
-		view.clear()
-	}
-
 
 }
