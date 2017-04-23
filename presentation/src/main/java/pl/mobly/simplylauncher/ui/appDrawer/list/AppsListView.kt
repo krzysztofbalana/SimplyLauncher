@@ -31,7 +31,7 @@ class AppsListView : LinearLayout, AppsListContract.View {
 		val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
 
-		installedAppsList.layoutManager = LinearLayoutManager(context, VERTICAL, false)
+		appsList.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 	}
 
 	override fun onAttachedToWindow() {
@@ -39,10 +39,10 @@ class AppsListView : LinearLayout, AppsListContract.View {
 	}
 
 	override fun displayInstalledAppsList(list: List<DomainApplicationInfo>) {
-		installedAppsList.adapter = AppsListAdapter(context, list)
+		appsList.adapter = AppsListAdapter(context, list)
 	}
 
-	override fun onIconClick() {
+	override fun onItemClick() {
 	}
 
 	override fun onDetachedFromWindow() {

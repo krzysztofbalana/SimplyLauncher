@@ -7,11 +7,11 @@ interface AppsListContract {
 
 	interface View {
 		fun displayInstalledAppsList(list: List<DomainApplicationInfo>)
-		fun onIconClick()
+		fun onItemClick()
 	}
 
 	interface Presenter {
-
+		fun getInstalledApps()
 	}
 
 }
