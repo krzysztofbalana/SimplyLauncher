@@ -1,28 +1,26 @@
 package pl.mobly.simplylauncher.ui.appDrawer.grid
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.TextView
 import pl.mobly.domain.DomainApplicationInfo
+import pl.mobly.simplylauncher.R
 
 
 class IconsAdapter(val context: Context, val list:List<DomainApplicationInfo>) : BaseAdapter() {
 
 	override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-		var imageView:ImageView
-		if (p1 == null) {
-			imageView = ImageView(context)
-			imageView.layoutParams = LinearLayout.LayoutParams(85,85)
-			imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-			imageView.setPadding(0,0,0,0)
-		} else {
-			imageView = p1 as ImageView
-		}
-		imageView.setImageResource(list.get(p0).icon)
-		return imageView
+		val gridItemElement = LayoutInflater.from(context).inflate(R.layout.item_installed_app_icon, p2, false)
+		val iv = gridItemElement.findViewById(R.id.item_icon) as ImageView
+		val tv = gridItemElement.findViewById(R.id.item_label) as TextView
+		iv.setImageResource(list.get(p0).icon)
+		tv.setText(list.get(p0).name)
+
+		return gridItemElement
 	}
 
 	override fun getItem(p0: Int): Any {

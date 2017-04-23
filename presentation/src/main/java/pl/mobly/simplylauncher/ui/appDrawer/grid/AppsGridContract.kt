@@ -7,7 +7,7 @@ interface AppsGridContract {
 
 	interface View {
 		fun displayAppsGrid(list: List<DomainApplicationInfo>)
-		fun onIconClick()
+		fun onItemClick()
 	}
 
 	interface Presenter {

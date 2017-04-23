@@ -43,6 +43,6 @@ class AppsGridView : LinearLayout, AppsGridContract.View {
 		grid.adapter = IconsAdapter(context, list)
 	}
 
-	override fun onIconClick() {
+	override fun onItemClick() {
 	}
 }

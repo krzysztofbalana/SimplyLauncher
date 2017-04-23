@@ -14,7 +14,7 @@ class AppsListPresenterImpl(private val systemInfoInteractor: SystemInfoInteract
 		getInstalledApps()
 	}
 
-	private fun getInstalledApps() {
+	override fun getInstalledApps() {
 		disposable = systemInfoInteractor.loadAppsList().observeOn(AndroidSchedulers.mainThread()).subscribe(
 				{appsList ->
 					view.get()?.displayInstalledAppsList(appsList)
