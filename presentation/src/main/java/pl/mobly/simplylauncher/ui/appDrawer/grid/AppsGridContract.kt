@@ -7,10 +7,10 @@ interface AppsGridContract {
 
 	interface View {
 		fun displayAppsGrid(list: List<DomainApplicationInfo>)
-		fun onItemClick()
 	}
 
 	interface Presenter {
 		fun getInstalledApps()
+		fun onItemSelected(it: String)
 	}
 }

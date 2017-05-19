@@ -11,19 +11,22 @@ import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 
 
-class IconsAdapter(val context: Context, val list:List<DomainApplicationInfo>) : BaseAdapter() {
+class IconsAdapter(val context: Context, val list:List<DomainApplicationInfo>, val listener: (String) -> Unit) : BaseAdapter() {
 
 	override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 		val gridItemElement = LayoutInflater.from(context).inflate(R.layout.item_installed_app_icon, p2, false)
 		val iv = gridItemElement.findViewById(R.id.item_icon) as ImageView
 		val tv = gridItemElement.findViewById(R.id.item_label) as TextView
-		iv.setImageResource(list.get(p0).icon)
+		val applicationIcon = context.packageManager.getApplicationIcon(list.get(p0).packageName)
+		iv.setImageDrawable(applicationIcon)
 		tv.setText(list.get(p0).name)
+
+		gridItemElement.setOnClickListener { listener.invoke(list.get(p0).packageName) }
 
 		return gridItemElement
 	}
 
-	override fun getItem(p0: Int): Any {
+	override fun getItem(p0: Int): DomainApplicationInfo {
 		return list.get(p0)
 	}
 
@@ -34,4 +37,6 @@ class IconsAdapter(val context: Context, val list:List<DomainApplicationInfo>) :
 	override fun getCount(): Int {
 		return list.size
 	}
+
+
 }

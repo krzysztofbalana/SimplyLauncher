@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 
 class AppsGridView : LinearLayout, AppsGridContract.View {
-	@Inject lateinit var presenter:AppsGridPresenter
+	@Inject lateinit var presenter: AppsGridPresenter
 
 	constructor(context: Context?) : super(context) {
 		init()
@@ -40,9 +40,14 @@ class AppsGridView : LinearLayout, AppsGridContract.View {
 	}
 
 	override fun displayAppsGrid(list: List<DomainApplicationInfo>) {
-		grid.adapter = IconsAdapter(context, list)
+		grid.adapter = IconsAdapter(context, list, {
+			presenter.onItemSelected(it)
+		})
 	}
 
-	override fun onItemClick() {
+	fun launchIntentFromPackageName(packageName: String) {
+		val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+		context.startActivity(intent)
 	}
+
 }
