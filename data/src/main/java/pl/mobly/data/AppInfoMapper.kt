@@ -11,7 +11,7 @@ object AppInfoMapper {
     internal fun mapToDomain(info: MutableList<ApplicationInfo>, packageManager: PackageManager): List<DomainApplicationInfo> {
         val domainApplicationInfos = ArrayList<DomainApplicationInfo>()
         for (appInfo in info) {
-            domainApplicationInfos.add(DomainApplicationInfo(appInfo.loadLabel(packageManager).toString(), appInfo.icon))
+            domainApplicationInfos.add(DomainApplicationInfo(appInfo.loadLabel(packageManager).toString(), appInfo.packageName, appInfo.icon))
         }
         return domainApplicationInfos
     }
