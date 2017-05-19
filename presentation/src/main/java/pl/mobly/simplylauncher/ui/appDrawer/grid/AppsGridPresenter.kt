@@ -22,4 +22,8 @@ class AppsGridPresenter(val systemInfoInteractor: SystemInfoInteractorImpl) : Ba
 							view.get()?.displayAppsGrid(list) },
 						Throwable::printStackTrace)
 	}
+
+	override fun onItemSelected(it: String) {
+		view.get()?.launchIntentFromPackageName(it)
+	}
 }
