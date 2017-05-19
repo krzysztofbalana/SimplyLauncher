@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
     @Provides
     @Singleton
-    fun provideSystemApi(packageManagerResource: PackageManagerResource) : SystemApiImpl {
-        return SystemApiImpl(packageManagerResource)
+    fun provideSystemApi(packageManagerResource: PackageManagerResource, packageManager: PackageManager) : SystemApiImpl {
+        return SystemApiImpl(packageManagerResource, packageManager)
     }
 }

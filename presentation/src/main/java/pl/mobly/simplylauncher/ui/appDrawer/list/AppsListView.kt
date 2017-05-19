@@ -1,4 +1,4 @@
-package pl.mobly.simplylauncher.ui.appDrawer
+package pl.mobly.simplylauncher.ui.appDrawer.list
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -12,28 +12,26 @@ import pl.mobly.simplylauncher.common.AppBase
 import javax.inject.Inject
 
 
-class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
+class AppsListView : LinearLayout, AppsListContract.View {
 
-	lateinit private var mContext: Context
-	@Inject lateinit var presenter: AppDrawerPresenterImpl
+	@Inject lateinit var presenter: AppsListPresenterImpl
 
 	constructor(context: Context):super(context) {
 		init()
 	}
 
 	constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-		this.mContext = context
 		init()
 	}
 
 	private fun init() {
-		(mContext.applicationContext as AppBase).createHomeComponent().inject(this)
+		(context.applicationContext as AppBase).createHomeComponent().inject(this)
 		presenter.bind(this)
 
-		val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+		val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 		val inflatedView = inflater.inflate(R.layout.view_appdrawer, this, true)
 
-		installedAppsList.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+		appsList.layoutManager = LinearLayoutManager(context, VERTICAL, false)
 	}
 
 	override fun onAttachedToWindow() {
@@ -41,10 +39,10 @@ class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 	}
 
 	override fun displayInstalledAppsList(list: List<DomainApplicationInfo>) {
-		installedAppsList.adapter = AppsListAdapter(mContext, list)
+		appsList.adapter = AppsListAdapter(context, list)
 	}
 
-	override fun onIconClick() {
+	override fun onItemClick() {
 	}
 
 	override fun onDetachedFromWindow() {
@@ -52,9 +50,9 @@ class AppDrawerViewImpl : LinearLayout, AppDrawerContract.View {
 		dispose()
 	}
 
-	public fun dispose() {
+	fun dispose() {
 		presenter.unbind()
-		(mContext.applicationContext as AppBase).releaseHomeComponent()
+		(context.applicationContext as AppBase).releaseHomeComponent()
 	}
 }
 
