@@ -32,11 +32,13 @@
 		android:id="@+id/view_apps_list"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+	    android:visibility="gone"
 		/>
 
 	<pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
 		android:id="@+id/view_apps_grid"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:visibility="gone"/>
 
 </merge>
