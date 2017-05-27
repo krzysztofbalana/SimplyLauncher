@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.widget.LinearLayout
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
+import pl.mobly.simplylauncher.ui.appDrawer.AppDrawer
 import java.util.logging.Logger
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class HomeActivity : Activity(), HomeView {
     @Inject lateinit var homePresenter:HomePresenterImpl
     lateinit var gestureDetector: GestureDetector
     lateinit var bottomSheetLayout:LinearLayout
+    lateinit var appDrawer:AppDrawer
 
 
     override fun onResume() {
@@ -34,6 +36,7 @@ class HomeActivity : Activity(), HomeView {
         initInjectionSystem()
 
         bottomSheetLayout = findViewById(R.id.bottom_sheet) as LinearLayout
+        appDrawer = findViewById(R.id.app_drawer) as AppDrawer
 
         gestureDetector = GestureDetector(this, object : SimpleOnGestureListener() {
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {

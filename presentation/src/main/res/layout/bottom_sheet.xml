@@ -10,15 +10,8 @@
               app:behavior_hideable="true"
               app:layout_behavior="@string/bottom_sheet_behavior">
 
-	<pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
-		android:id="@+id/view_apps_list"
+	<pl.mobly.simplylauncher.ui.appDrawer.AppDrawer
+		android:id="@+id/app_drawer"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		/>
-
-	<pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
-		android:id="@+id/view_apps_grid"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
-
+		android:layout_height="match_parent"/>
 </LinearLayout>
