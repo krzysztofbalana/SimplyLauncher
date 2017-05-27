@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Simply Launcher</string>
+	<string name="switcher_item_list">List</string>
+	<string name="switcher_item_grid">Grid</string>
 </resources>
