@@ -1,6 +1,5 @@
 apply plugin: 'java'
 apply plugin: 'kotlin'
-apply plugin: 'kotlin-kapt'
 
 configurations {
     provided
@@ -11,20 +10,14 @@ sourceSets {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
     def testDependencies = rootProject.ext.testDependencies
     def commonDependencies = rootProject.ext.commonDependencies
 
     compile domainDependencies.rxjava
-    compile commonDependencies.kotlin
 
     testCompile 'junit:junit:4.12'
-    testCompile commonDependencies.kotlin
     testCompile testDependencies.kjunit
     testCompile 'com.nhaarman:mockito-kotlin:1.1.0'
 }
