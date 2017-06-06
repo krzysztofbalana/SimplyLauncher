@@ -10,20 +10,25 @@
 	<pl.mobly.simplylauncher.common.views.SimpleSwitcher
 		android:id="@+id/switcher"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_gravity="right"
+	    android:padding="@dimen/padding_small"
+		>
 
 		<pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
 			android:id="@+id/list_item"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-		    custom:caption="@string/switcher_item_list"
+		    custom:icon="@drawable/ic_list"
+		    android:padding="@dimen/padding_small"
 			/>
 
 		<pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
 			android:id="@+id/grid_item"
 		    android:layout_height="wrap_content"
 		    android:layout_width="wrap_content"
-			custom:caption="@string/switcher_item_grid"/>
+			custom:icon="@drawable/ic_grid"
+			android:padding="@dimen/padding_small"/>
 
 
 	</pl.mobly.simplylauncher.common.views.SimpleSwitcher>
