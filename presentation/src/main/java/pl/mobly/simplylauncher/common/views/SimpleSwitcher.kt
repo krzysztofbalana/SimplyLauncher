@@ -43,14 +43,29 @@ class SimpleSwitcher : LinearLayout {
 	}
 
 	fun listenToClicks(): Observable<Int> {
-		return Observable.create { subscrirber ->
-			for (view in viewGroup.getChildList()) {
-				view.setOnClickListener { view -> subscrirber.onNext(viewGroup.indexOfChild(view)) }
+		return Observable.create { subscriber ->
+			for (view in viewGroup.childList()) {
+				view.setOnClickListener { view ->
+					subscriber.onNext(viewGroup.indexOfChild(view))
+					view as SimpleSwitcherItem
+					view.select()
+					unselectRest(view.id)
+				}
 			}
 	}
 	}
 
-	fun ViewGroup.getChildList(): List<View> {
+	private fun unselectRest(selectedViewId: Int) {
+		for (view in viewGroup.childList()) {
+			if (view.id != selectedViewId) {
+				when(view) {
+					is SimpleSwitcherItem -> view.unselect()
+				}
+			}
+		}
+	}
+
+	fun ViewGroup.childList(): List<View> {
 		var list = ArrayList<View>()
 		for (i in 0..this.childCount - 1) {
 			val childAt = this.getChildAt(i) as View

@@ -32,6 +32,7 @@ class AppDrawer : LinearLayout, AppDrawerView {
 
 	constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
 		init()
+
 	}
 
 	private fun init() {

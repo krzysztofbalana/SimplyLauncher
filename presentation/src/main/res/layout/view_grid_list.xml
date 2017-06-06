@@ -5,15 +5,16 @@
               android:orientation="vertical">
 
 	<GridView
+		android:padding="@dimen/padding_normal"
 		android:id="@+id/grid"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@color/colorPrimary"
+		android:background="@android:color/white"
 		android:gravity="center"
-		android:horizontalSpacing="10dp"
-		android:numColumns="auto_fit"
+		android:horizontalSpacing="8dp"
+		android:numColumns="4"
 		android:stretchMode="columnWidth"
-		android:verticalSpacing="10dp">
+		android:verticalSpacing="16dp">
 	</GridView>
 
 </LinearLayout>
