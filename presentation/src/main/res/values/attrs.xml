@@ -3,5 +3,6 @@
 
 	<declare-styleable name="SimpleSwitcherItem">
 		<attr name="caption" format="string"/>
+		<attr name="icon" format="reference"/>
 	</declare-styleable>
 </resources>
