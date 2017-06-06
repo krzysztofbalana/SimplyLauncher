@@ -51,13 +51,11 @@ dependencies {
     kapt dataDependencies.rxjava
     compile dataDependencies.rxandroid
     provided commonDependencies.javaAnnotations
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     testCompile 'junit:junit:4.12'
     testCompile testDependencies.kjunit
     testCompile testDependencies.mockito
     testCompile 'com.nhaarman:mockito-kotlin:1.1.0'
-    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 }
 
