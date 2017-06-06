@@ -4,6 +4,7 @@ apply plugin: 'kotlin'
 configurations {
     provided
 }
+
 sourceSets {
     main {
         compileClasspath += configurations.provided
@@ -20,5 +21,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile testDependencies.kjunit
     testCompile 'com.nhaarman:mockito-kotlin:1.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
 
