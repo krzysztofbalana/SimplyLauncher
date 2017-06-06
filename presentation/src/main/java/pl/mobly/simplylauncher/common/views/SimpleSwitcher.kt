@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import io.reactivex.Observable
 import pl.mobly.simplylauncher.R
+import pl.mobly.simplylauncher.common.childList
 
 
 class SimpleSwitcher : LinearLayout {
@@ -63,15 +64,6 @@ class SimpleSwitcher : LinearLayout {
 				}
 			}
 		}
-	}
-
-	fun ViewGroup.childList(): List<View> {
-		var list = ArrayList<View>()
-		for (i in 0..this.childCount - 1) {
-			val childAt = this.getChildAt(i) as View
-			list.add(childAt)
-		}
-		return list
 	}
 
 }
