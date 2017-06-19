@@ -3,6 +3,7 @@ package pl.mobly.simplylauncher.ui.appDrawer
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import io.reactivex.disposables.Disposable
 import pl.mobly.simplylauncher.R
@@ -74,6 +75,10 @@ class AppDrawer : LinearLayout, AppDrawerView {
     override fun showGrid() {
         gridView.makeVisible()
         listView.makeGone()
+    }
+
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return super.onInterceptTouchEvent(ev)
     }
 
 }

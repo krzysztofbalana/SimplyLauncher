@@ -25,7 +25,7 @@ fun View.makeGone() {
 fun ViewGroup.childList(): List<View> {
     var list = ArrayList<View>()
     for (i in 0..this.childCount - 1) {
-        val childAt = this.getChildAt(i) as View
+        val childAt = this.getChildAt(i)
         list.add(childAt)
     }
     return list

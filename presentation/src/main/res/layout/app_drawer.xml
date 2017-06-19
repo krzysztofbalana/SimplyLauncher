@@ -1,49 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:custom="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    tools:layout_height="match_parent">
 
-	<pl.mobly.simplylauncher.common.views.SimpleSwitcher
-		android:id="@+id/switcher"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="right"
-	    android:padding="@dimen/padding_small"
-		>
+    <pl.mobly.simplylauncher.common.views.SimpleSwitcher
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:layout_constraintBottom_toTopOf="@+id/view_apps_grid"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.636"
+        custom:layout_constraintLeft_toLeftOf="parent"
+        custom:layout_constraintRight_toRightOf="parent"
+        custom:layout_constraintStart_toStartOf="parent">
 
-		<pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
-			android:id="@+id/list_item"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-		    custom:icon="@drawable/ic_list"
-		    android:padding="@dimen/padding_small"
-			/>
+        <pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
+            android:id="@+id/list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            custom:icon="@drawable/ic_list" />
 
-		<pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
-			android:id="@+id/grid_item"
-		    android:layout_height="wrap_content"
-		    android:layout_width="wrap_content"
-			custom:icon="@drawable/ic_grid"
-			android:padding="@dimen/padding_small"/>
+        <pl.mobly.simplylauncher.common.views.SimpleSwitcherItem
+            android:id="@+id/grid_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small"
+            custom:icon="@drawable/ic_grid" />
+    </pl.mobly.simplylauncher.common.views.SimpleSwitcher>
 
+    <pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
+        android:id="@+id/view_apps_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent" />
 
-	</pl.mobly.simplylauncher.common.views.SimpleSwitcher>
+    <pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
+        android:id="@+id/view_apps_grid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent" />
 
-	<pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
-		android:id="@+id/view_apps_list"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-	    android:visibility="gone"
-		/>
-
-	<pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
-		android:id="@+id/view_apps_grid"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone"/>
-
-</merge>
+</android.support.constraint.ConstraintLayout>

@@ -2,16 +2,20 @@ package pl.mobly.simplylauncher.ui.home
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.Gravity
 import android.view.MotionEvent
+import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.Toast
+import butterknife.ButterKnife
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
-import pl.mobly.simplylauncher.ui.appDrawer.AppDrawer
 import java.util.logging.Logger
 import javax.inject.Inject
+
 
 class HomeActivity : Activity(), HomeView {
 
@@ -19,24 +23,20 @@ class HomeActivity : Activity(), HomeView {
         val log = Logger.getLogger(javaClass.simpleName)
     }
 
-    @Inject lateinit var homePresenter:HomePresenterImpl
+    @Inject lateinit var homePresenter: HomePresenterImpl
     lateinit var gestureDetector: GestureDetector
-    lateinit var bottomSheetLayout:LinearLayout
-    lateinit var appDrawer:AppDrawer
 
 
     override fun onResume() {
         super.onResume()
-	    homePresenter.bindView(this)
+        homePresenter.bindView(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        ButterKnife.bind(this)
         initInjectionSystem()
-
-        bottomSheetLayout = findViewById(R.id.bottom_sheet) as LinearLayout
-        appDrawer = findViewById(R.id.app_drawer) as AppDrawer
 
         gestureDetector = GestureDetector(this, object : SimpleOnGestureListener() {
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
@@ -47,12 +47,43 @@ class HomeActivity : Activity(), HomeView {
                 var minimalDistanceLength = 100
                 if (distanceY >= minimalDistanceLength) {
                     log.info("MOVING UP")
-                    val from = BottomSheetBehavior.from(bottomSheetLayout)
-                    from.setState(BottomSheetBehavior.STATE_EXPANDED)
+
+                    val rootLayout = findViewById(android.R.id.content) as FrameLayout
+                    val view = View.inflate(this@HomeActivity, R.layout.app_drawer, null)
+
+                    val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT)
+
+                    view.layoutParams = lp
+
+                    rootLayout.addView(view)
+                    view.invalidate()
+
+                    rootLayout.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+                        override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int) {
+                            p0.toString()
+                        }
+                    })
+
                 }
                 return super.onScroll(e1, e2, distanceX, distanceY)
+
             }
         })
+
+
+        val testint = testint(111112, { it -> it.toString() })
+        Toast.makeText(this, "$testint", Toast.LENGTH_LONG).show()
+
+    }
+
+    fun testint(int: Int, op: (Int) -> String): String {
+        return op(int)
+    }
+
+
+    fun convertIntToString(int: Int): String {
+        return int.toString()
     }
 
     private fun initInjectionSystem() {
@@ -61,10 +92,9 @@ class HomeActivity : Activity(), HomeView {
 
     override fun onDestroy() {
         releaseInjectionSystem()
-	    homePresenter.unbindView()
+        homePresenter.unbindView()
         super.onDestroy()
     }
-
 
     private fun releaseInjectionSystem() {
         (applicationContext as AppBase).releaseHomeComponent()
