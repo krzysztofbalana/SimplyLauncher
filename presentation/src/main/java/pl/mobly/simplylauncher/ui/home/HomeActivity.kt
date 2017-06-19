@@ -13,6 +13,7 @@ import android.widget.Toast
 import butterknife.ButterKnife
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
+import pl.mobly.simplylauncher.ui.appDrawer.AppDrawer
 import java.util.logging.Logger
 import javax.inject.Inject
 
@@ -49,15 +50,15 @@ class HomeActivity : Activity(), HomeView {
                     log.info("MOVING UP")
 
                     val rootLayout = findViewById(android.R.id.content) as FrameLayout
-                    val view = View.inflate(this@HomeActivity, R.layout.app_drawer, null)
+                    val appDrawer:AppDrawer = AppDrawer(applicationContext)
 
                     val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT)
 
-                    view.layoutParams = lp
+                    appDrawer.layoutParams = lp
 
-                    rootLayout.addView(view)
-                    view.invalidate()
+                    rootLayout.addView(appDrawer)
+                    appDrawer.invalidate()
 
                     rootLayout.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
                         override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int) {
@@ -70,10 +71,6 @@ class HomeActivity : Activity(), HomeView {
 
             }
         })
-
-
-        val testint = testint(111112, { it -> it.toString() })
-        Toast.makeText(this, "$testint", Toast.LENGTH_LONG).show()
 
     }
 

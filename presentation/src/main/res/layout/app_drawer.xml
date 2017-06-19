@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:orientation="vertical"
-    tools:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
     <pl.mobly.simplylauncher.common.views.SimpleSwitcher
         android:id="@+id/switcher"
@@ -37,7 +34,7 @@
     <pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
         android:id="@+id/view_apps_list"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"

@@ -9,8 +9,9 @@ import io.reactivex.disposables.Disposable
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
 import pl.mobly.simplylauncher.common.views.SimpleSwitcher
-import pl.mobly.simplylauncher.common.makeGone
-import pl.mobly.simplylauncher.common.makeVisible
+import pl.mobly.simplylauncher.common.gone
+import pl.mobly.simplylauncher.common.invisible
+import pl.mobly.simplylauncher.common.visible
 import pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
 import pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
 import javax.inject.Inject
@@ -68,13 +69,13 @@ class AppDrawer : LinearLayout, AppDrawerView {
     }
 
     override fun showList() {
-        listView.makeVisible()
-        gridView.makeGone()
+        listView.visible()
+        gridView.invisible()
     }
 
     override fun showGrid() {
-        gridView.makeVisible()
-        listView.makeGone()
+        gridView.visible()
+        listView.invisible()
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
