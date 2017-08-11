@@ -9,18 +9,16 @@ import io.reactivex.disposables.Disposable
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
 import pl.mobly.simplylauncher.common.views.SimpleSwitcher
-import pl.mobly.simplylauncher.common.gone
 import pl.mobly.simplylauncher.common.invisible
 import pl.mobly.simplylauncher.common.visible
 import pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridView
 import pl.mobly.simplylauncher.ui.appDrawer.list.AppsListView
 import javax.inject.Inject
 
-class AppDrawer : LinearLayout, AppDrawerView {
-    @Inject lateinit var presenter: AppDrawerPresenterImpl
+class AppDrawer : LinearLayout, AppDrawerContract.View {
+    @Inject lateinit var presenter: AppDrawerPresenter
 
     lateinit var disposable: Disposable
-    lateinit var parentView: LinearLayout
     lateinit var simpleSwitcher: SimpleSwitcher
     lateinit var listView: AppsListView
     lateinit var gridView: AppsGridView
@@ -35,14 +33,13 @@ class AppDrawer : LinearLayout, AppDrawerView {
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init()
-
     }
 
     private fun init() {
-        (context.applicationContext as AppBase).createHomeComponent().inject(this)
+        initDependencyInjection()
 
         val layoutInflater = LayoutInflater.from(context)
-        parentView = layoutInflater.inflate(R.layout.app_drawer, this, true) as LinearLayout
+        val parentView = layoutInflater.inflate(R.layout.app_drawer, this, true) as LinearLayout
         parentView.orientation = LinearLayout.VERTICAL
 
         simpleSwitcher = parentView.findViewById(R.id.switcher) as SimpleSwitcher
@@ -58,7 +55,11 @@ class AppDrawer : LinearLayout, AppDrawerView {
 
     }
 
-    private fun notifyHost(i: Int?) {
+    private fun initDependencyInjection() {
+        (context.applicationContext as AppBase).createHomeComponent().inject(this)
+    }
+
+    private fun notifyHost(i: Int) {
         presenter.onSwitcherTapped(i)
     }
 
@@ -78,8 +79,9 @@ class AppDrawer : LinearLayout, AppDrawerView {
         listView.invisible()
     }
 
-    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        return super.onInterceptTouchEvent(ev)
-    }
+    override fun highlightSwitch(i:Int) = simpleSwitcher.highlight(i)
+
+    override fun onInterceptTouchEvent(ev: MotionEvent?)
+            = super.onInterceptTouchEvent(ev)
 
 }

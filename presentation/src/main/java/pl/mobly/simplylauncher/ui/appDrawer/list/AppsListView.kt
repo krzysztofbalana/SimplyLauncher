@@ -9,10 +9,11 @@ import kotlinx.android.synthetic.main.view_appdrawer.view.*
 import pl.mobly.domain.DomainApplicationInfo
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
+import pl.mobly.simplylauncher.ui.appDrawer.list.AppsListContract.View
 import javax.inject.Inject
 
 
-class AppsListView : LinearLayout, AppsListContract.View {
+class AppsListView : LinearLayout, View {
 
 	@Inject lateinit var presenter: AppsListPresenterImpl
 

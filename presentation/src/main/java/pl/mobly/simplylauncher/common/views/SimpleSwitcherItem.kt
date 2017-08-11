@@ -1,7 +1,9 @@
 package pl.mobly.simplylauncher.common.views
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +14,11 @@ import pl.mobly.simplylauncher.R
 
 
 class SimpleSwitcherItem : LinearLayout {
-	private lateinit var attributeSet:AttributeSet
+	private lateinit var attributeSet: AttributeSet
 	private lateinit var view: View
 	private lateinit var icon: ImageView
 	private lateinit var caption:TextView
-	private var isActive:Boolean = false
+	var isActive = false
 
 	constructor(context: Context?) : super(context) {
 		init()
@@ -49,8 +51,8 @@ class SimpleSwitcherItem : LinearLayout {
 	}
 
 	fun setIcon(iconDrawable:Int) {
-		this.icon.setBackgroundResource(iconDrawable)
-		makeVisible(this.icon)
+		icon.setBackgroundResource(iconDrawable)
+		makeVisible(icon)
 	}
 
 	fun setIconColor(color:Int) {
@@ -59,14 +61,14 @@ class SimpleSwitcherItem : LinearLayout {
 		icon.setBackgroundDrawable(background)
 	}
 
-	fun select() {
+	fun activate() {
 		isActive = true
-		val drawable = context.resources.getDrawable(R.drawable.bg_oval)
-		view.setBackgroundDrawable(drawable)
 	}
 
 	fun unselect() {
-		view.setBackgroundColor(0)
+        val drawable = ContextCompat.getDrawable(context, R.drawable.bg_transparent)
+		view.setBackgroundDrawable(drawable)
+		isActive = false
 	}
 
 	fun setCaption(caption:String) {
@@ -79,5 +81,10 @@ class SimpleSwitcherItem : LinearLayout {
 			view.visibility = View.VISIBLE
 		}
 	}
+
+    fun highlight() {
+        val drawable = ContextCompat.getDrawable(context, R.drawable.bg_oval)
+        view.setBackgroundDrawable(drawable)
+    }
 
 }

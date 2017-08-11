@@ -4,12 +4,10 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.Toast
 import butterknife.ButterKnife
 import pl.mobly.simplylauncher.R
 import pl.mobly.simplylauncher.common.AppBase
@@ -50,7 +48,7 @@ class HomeActivity : Activity(), HomeView {
                     log.info("MOVING UP")
 
                     val rootLayout = findViewById(android.R.id.content) as FrameLayout
-                    val appDrawer:AppDrawer = AppDrawer(applicationContext)
+                    val appDrawer = AppDrawer(applicationContext)
 
                     val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT)
@@ -72,16 +70,9 @@ class HomeActivity : Activity(), HomeView {
             }
         })
 
+
     }
 
-    fun testint(int: Int, op: (Int) -> String): String {
-        return op(int)
-    }
-
-
-    fun convertIntToString(int: Int): String {
-        return int.toString()
-    }
 
     private fun initInjectionSystem() {
         (applicationContext as AppBase).createHomeComponent().inject(this)
