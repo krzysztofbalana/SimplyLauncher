@@ -11,7 +11,7 @@ ext {
     butterknifeVersion = "8.4.0"
     butterknifeCompilerVersion = "8.4.0"
     timberVersion = "4.3.1"
-    constraintLayoutVersion = "constraint-layout:1.0.1"
+    constraintLayoutVersion = "1.0.2"
     javaAnnotationsVersion = "1.0"
     kotlinVersion = "1.1.2-3"
 
@@ -36,7 +36,7 @@ ext {
             butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
             butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeCompilerVersion}",
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
-            constraintLayout   : "com.android.support.constraint:${constraintLayoutVersion}",
+            constraintLayout   : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             supportV4          : "com.android.support:support-v4:${supportVersion}",
     ]
 
