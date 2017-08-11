@@ -28,9 +28,6 @@ fun View.invisible() {
 
 fun ViewGroup.childList(): List<View> {
     var list = ArrayList<View>()
-    for (i in 0..this.childCount - 1) {
-        val childAt = this.getChildAt(i)
-        list.add(childAt)
-    }
+    (0 until this.childCount).mapTo(list) { this.getChildAt(it) }
     return list
 }
