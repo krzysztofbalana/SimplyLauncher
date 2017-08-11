@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.Module
 import dagger.Provides
 import pl.mobly.domain.interactors.SystemInfoInteractorImpl
-import pl.mobly.simplylauncher.ui.appDrawer.AppDrawerPresenterImpl
+import pl.mobly.simplylauncher.ui.appDrawer.AppDrawerPresenter
 import pl.mobly.simplylauncher.ui.appDrawer.grid.AppsGridPresenter
 import pl.mobly.simplylauncher.ui.appDrawer.list.AppsListPresenterImpl
 
@@ -31,8 +31,8 @@ open class HomeModule(private val application: Application) {
 
     @Provides
     @HomeScope
-    fun provideAppDrawerPresneter():AppDrawerPresenterImpl {
-        return AppDrawerPresenterImpl()
+    fun provideAppDrawerPresneter(): AppDrawerPresenter {
+        return AppDrawerPresenter()
     }
 
 }

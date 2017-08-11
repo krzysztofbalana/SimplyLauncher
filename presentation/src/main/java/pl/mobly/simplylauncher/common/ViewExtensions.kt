@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-fun View.makeVisible() {
+fun View.visible() {
     val visible: Int = View.VISIBLE
 
     when (this.visibility) {
@@ -14,7 +14,7 @@ fun View.makeVisible() {
 
 }
 
-fun View.makeGone() {
+fun View.gone() {
     val gone: Int = View.GONE
 
     when (this.visibility) {
@@ -22,11 +22,12 @@ fun View.makeGone() {
     }
 }
 
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
+
 fun ViewGroup.childList(): List<View> {
     var list = ArrayList<View>()
-    for (i in 0..this.childCount - 1) {
-        val childAt = this.getChildAt(i) as View
-        list.add(childAt)
-    }
+    (0 until this.childCount).mapTo(list) { this.getChildAt(it) }
     return list
 }

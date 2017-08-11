@@ -10,16 +10,16 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class AppDrawerPresenterImplTest {
+class AppDrawerPresenterTest {
 
-	lateinit var systemUnderTest:AppDrawerPresenterImpl
-	@Mock lateinit var dummyView:AppDrawerView
+	lateinit var systemUnderTest: AppDrawerPresenter
+	@Mock lateinit var dummyView:AppDrawerContract.View
 	lateinit var context: Context
 
 	@Before
 	fun setUp() {
 		context = Mockito.mock(Context::class.java)
-		systemUnderTest = AppDrawerPresenterImpl()
+		systemUnderTest = AppDrawerPresenter()
 		systemUnderTest.bind(dummyView)
 	}
 
@@ -47,4 +47,11 @@ class AppDrawerPresenterImplTest {
 		verify(dummyView).showList()
 	}
 
+    @Test
+    fun shouldBeAbleToSetViewToDefaultPresentationMode() {
+        Mockito.reset(dummyView)
+		systemUnderTest.setDefaultAppsPresentationMode()
+
+        verify(dummyView).showGrid()
+    }
 }

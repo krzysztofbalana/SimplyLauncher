@@ -12,7 +12,7 @@ import pl.mobly.simplylauncher.common.childList
 
 
 class SimpleSwitcher : LinearLayout {
-    private lateinit var viewGroup: LinearLayout
+    private lateinit var rootView: LinearLayout
     private lateinit var viewsCollection: MutableList<View>
 
     constructor(context: Context) : super(context) {
@@ -25,12 +25,12 @@ class SimpleSwitcher : LinearLayout {
 
     private fun init() {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        viewGroup = layoutInflater.inflate(R.layout.view_simple_switcher, this, true) as LinearLayout
+        rootView = layoutInflater.inflate(R.layout.view_simple_switcher, this, true) as LinearLayout
     }
 
     fun addItem(caption: String) {
         val item = createItemViewWith(caption)
-        viewGroup.addView(item)
+        rootView.addView(item)
         invalidate()
     }
 
@@ -44,23 +44,34 @@ class SimpleSwitcher : LinearLayout {
 
     fun listenToClicks(): Observable<Int> {
         return Observable.create { subscriber ->
-            for (view in viewGroup.childList()) {
+            for (view in rootView.childList()) {
                 view.setOnClickListener { view ->
-                    subscriber.onNext(viewGroup.indexOfChild(view))
+                    subscriber.onNext(rootView.indexOfChild(view))
                     view as SimpleSwitcherItem
-                    view.select()
-                    unselectRest(view.id)
+                    view.activate()
                 }
             }
         }
     }
 
-    private fun unselectRest(selectedViewId: Int) {
-        for (view in viewGroup.childList()) {
-            if (view.id != selectedViewId) {
-                when (view) {
-                    is SimpleSwitcherItem -> view.unselect()
+    private fun unselectAll() {
+        rootView.childList()
+                .forEach {
+                    when (it) {
+                        is SimpleSwitcherItem -> {
+                            it.unselect()
+                        }
+                    }
                 }
+    }
+
+
+    fun highlight(index: Int) {
+        unselectAll()
+        val view = rootView.getChildAt(index)
+        when (view) {
+            is SimpleSwitcherItem -> {
+                view.highlight()
             }
         }
     }
